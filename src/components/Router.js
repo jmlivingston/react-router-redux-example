@@ -9,11 +9,11 @@ import Home from './Home'
 import PageNotFound from './PageNotFound'
 
 const Router = () => <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/about" component={About} />
-    <Route path="/contact" component={Contact} />
-    <Route exact path="/blog" component={BlogList} />
-    <Route path="/blog/:id" component={Blog} />
+    <Route exact path='/' component={Home} />
+    <Route path='/about' component={About} />
+    <Route path='/contact' component={Contact} />
+    <Route exact path='/blog' component={BlogList} />
+    <Route path='/blog/:id' component={Blog} />
     <Route component={PageNotFound} />
 </Switch>
 
