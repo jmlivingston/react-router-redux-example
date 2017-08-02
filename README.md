@@ -3,8 +3,9 @@
 <ul>
   <li>Multi-page router</li>
   <li>Child routes in Blog</li>
+  <li>CRUD routes for Blog</li>
   <li>Navigate by code (See buttons on Home, Contact, and About)</li>
-  <li>404 - Page Not Found (See Broken Link)</li>
+  <li>404 - Page Not Found (See Broken Link)</li>  
   <li>More modularized than basic example:
       <ul>
           <li>Header and HeaderLink Components</li>
