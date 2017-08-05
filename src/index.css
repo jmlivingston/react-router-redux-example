@@ -5,3 +5,12 @@
 body {
     padding: 10px
 }
+
+.a-inline {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.success {
+  color: green
+}

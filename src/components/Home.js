@@ -12,7 +12,7 @@ const Home = () => <div>
     <li>Navigate by code (See buttons on Home, Contact, and About)</li>
     <li>404 - Page Not Found (See Broken Link)</li>
     <li>More modularized than basic example:
-            <ul>
+      <ul>
         <li>Header and HeaderLink Components</li>
         <li>Store and History split out under config</li>
         <li>Router Component - more centralized</li>
