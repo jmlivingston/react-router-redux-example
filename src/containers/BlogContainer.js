@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     }
   },
   remove () {
+    // Need redux-observable example
     blogRemoveByKey(ownProps.match.params.blogKey).then(
       result => {
         redirect('/blog')
@@ -36,6 +37,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   save (blog) {
     const isNew = ownProps.editMode === 'new'
     const key = isNew ? uuidv4() : ownProps.match.params.blogKey
+    // Need redux-observable example
     blogSave(key, blog).then(
       result => {
         if (isNew) {

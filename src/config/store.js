@@ -1,12 +1,14 @@
 import { applyMiddleware, compose, createStore } from 'redux'
+import { createEpicMiddleware } from 'redux-observable'
 import thunk from 'redux-thunk'
 import { routerMiddleware } from 'react-router-redux'
 
-import reducers from '../reducers'
+import { epics, reducers } from '../reducers'
 import history from './history'
 
+const epicMiddleware = createEpicMiddleware(epics)
 const historyMiddleware = routerMiddleware(history)
-const storyEnhancer = applyMiddleware(historyMiddleware, thunk)
+const storyEnhancer = applyMiddleware(epicMiddleware, historyMiddleware, thunk)
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const enhancer = composeEnhancer(storyEnhancer)
 
