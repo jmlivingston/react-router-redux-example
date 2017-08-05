@@ -24,11 +24,12 @@ export const blogRemoveByKey = key => {
   }
 }
 
-export const blogSaveByKey = (key, blog) => {
+export const blogSaveByKey = (key, blog, isNew) => {
   return {
     type: BLOG.SAVE_BY_KEY,
     key,
-    blog
+    blog,
+    isNew
   }
 }
 

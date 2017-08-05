@@ -1,14 +1,15 @@
 import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/observable/empty'
 import 'rxjs/add/observable/fromPromise'
+import 'rxjs/add/observable/empty'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/observable/of'
-import 'rxjs/add/operator/catch'
 import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/mapTo'
 import 'rxjs/add/operator/switchMap'
 
 import { BLOG } from '../config/constants'
 import { getBlogItems, setBlogItems } from './dummyData'
+import history from '../config/history'
 
 const blogEpic = action$ => Observable.merge(
   action$.ofType(BLOG.SAVE_BY_KEY).switchMap(action =>
@@ -18,10 +19,14 @@ const blogEpic = action$ => Observable.merge(
         [action.key]: action.blog
       }
       setBlogItems(newStorageItems)
-    })).switchMap(results => {
+      resolve()
+    })).mapTo(() => {
+      if (action.isNew) {
+        history.push('/blog/' + action.key)
+      }
       return Observable.of({
         ...action,
-        type: BLOG.SAVE_COMPLETE
+        type: BLOG.SAVE_BY_KEY_COMPLETE
       })
     })
   ),
@@ -32,10 +37,12 @@ const blogEpic = action$ => Observable.merge(
         ...filteredItems
       } = getBlogItems()
       setBlogItems(filteredItems)
-    })).switchMap(results => {
+      resolve()
+    })).mapTo(() => {
+      history.push('/blog/')
       return Observable.of({
         ...action,
-        type: BLOG.REMOVE_COMPLETE
+        type: BLOG.REMOVE_BY_KEY_COMPLETE
       })
     })
   )

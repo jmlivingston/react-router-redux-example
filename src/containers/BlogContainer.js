@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
   updated: state.blog.updated
 })
 
-const useThunk = true // true: thunk, false: observable
+const useThunk = false // true: thunk, false: observable
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   change (property, value) {
@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         error => console.log(error)
       )
     } else {
-      dispatch(blogSaveByKey(key, blog))
+      dispatch(blogSaveByKey(key, blog, isNew))
     }
   }
 })
