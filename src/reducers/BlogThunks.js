@@ -23,7 +23,7 @@ export const blogRemoveByKey = key => {
   })
 }
 
-export const blogSave = (key, blog) => {
+export const blogSaveByKey = (key, blog) => {
   return new Promise((resolve, reject) => {
     const newStorageItems = {
       ...getBlogItems(),

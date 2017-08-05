@@ -17,9 +17,24 @@ export const blogChange = (property, value) => ({
   value
 })
 
-export const blogSaveComplete = () => {
+export const blogRemoveByKey = key => {
   return {
-    type: BLOG.SAVE_COMPLETE
+    type: BLOG.REMOVE_BY_KEY,
+    key
+  }
+}
+
+export const blogSaveByKey = (key, blog) => {
+  return {
+    type: BLOG.SAVE_BY_KEY,
+    key,
+    blog
+  }
+}
+
+export const blogSaveByKeyComplete = () => {
+  return {
+    type: BLOG.SAVE_BY_KEY_COMPLETE
   }
 }
 
