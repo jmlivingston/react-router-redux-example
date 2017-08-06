@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { blogGetComplete } from '../config/actions'
-import { blogGet } from '../reducers/BlogThunks'
+import { blogRemoveByKey, blogGetComplete } from '../config/actions'
+import { blogGet, blogRemoveByKey as blogRemoveByKeyThunk } from '../reducers/BlogThunks'
 import BlogList from '../components/BlogList'
 
 const mapStateToProps = (state, ownProps) => ({
@@ -14,6 +14,17 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       items => dispatch(blogGetComplete(items)),
       error => console.log(error)
     )
+  },
+  remove (blogKey) {
+    if (ownProps.useThunk) {
+      blogRemoveByKeyThunk(blogKey).then(
+        result => {
+          this.get()
+        }
+      )
+    } else {
+      dispatch(blogRemoveByKey(blogKey, false))
+    }
   }
 })
 

@@ -2,7 +2,16 @@ import React from 'react'
 
 import HeaderLink from './HeaderLink'
 
-const Header = () => <div>
+const headerStyle = {
+  style: {
+    backgroundColor: '#ccc',
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    width: '100%'
+  }
+}
+
+const Header = () => <div {...headerStyle}>
   <HeaderLink exact to='/' innerText='Home' />
   <HeaderLink to='/contact' innerText='Contact' />
   <HeaderLink to='/about' innerText='About' />

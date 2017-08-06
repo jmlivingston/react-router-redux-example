@@ -7,10 +7,22 @@ const Home = () => <div>
   <h1>Home</h1>
   <p>Example of a simple implementation using react-router-redux:</p>
   <ul>
-    <li>Multi-page router</li>
-    <li>Child routes in Blog</li>
-    <li>Navigate by code (See buttons on Home, Contact, and About)</li>
-    <li>404 - Page Not Found (See Broken Link)</li>
+    <li>Router
+      <ul>
+        <li>Multi-Page (See buttons on Home, Contact, and About)</li>
+        <li>404 - Page Not Found (Try Broken Link)</li>
+      </ul>
+    </li>
+    <li>
+      Blog
+      <ul>
+        <li>Child routes in Blog</li>
+        <li>CRUD routes for Blog</li>
+        <li>redux-thunk and redux-observable examples<br />(Note: Change useThunk variable in Router.js to change)</li>
+        <li>Data Persistence Local Storage</li>
+      </ul>
+    </li>
+
     <li>More modularized than basic example:
       <ul>
         <li>Header and HeaderLink Components</li>

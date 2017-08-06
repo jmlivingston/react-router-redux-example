@@ -2,15 +2,10 @@ import { BLOG } from '../config/constants'
 
 const blog = (state = { item: { title: '' } }, action) => {
   switch (action.type) {
-    case BLOG.ADD:
-      return state
-    case BLOG.ADD_COMPLETE:
-      return state
     case BLOG.GET_COMPLETE:
       return {
         ...state,
         items: {
-          ...state.items,
           ...action.items
         }
       }
@@ -33,10 +28,6 @@ const blog = (state = { item: { title: '' } }, action) => {
           [action.property]: action.value
         }
       }
-    case BLOG.REMOVE:
-      return state
-    case BLOG.REMOVE_COMPLETE:
-      return state
     case BLOG.SAVE:
       return {
         ...state,
@@ -46,7 +37,7 @@ const blog = (state = { item: { title: '' } }, action) => {
           [action.key]: action.blog
         }
       }
-    case BLOG.SAVE_COMPLETE:
+    case BLOG.SAVE_BY_KEY_COMPLETE:
       return {
         ...state,
         updated: true

@@ -1,9 +1,18 @@
 import { BLOG } from './constants'
 import history from '../config/history'
 
+export const blogGet = () => ({
+  type: BLOG.GET
+})
+
 export const blogGetComplete = items => ({
   type: BLOG.GET_COMPLETE,
   items
+})
+
+export const blogGetByKey = blogKey => ({
+  type: BLOG.GET_BY_KEY,
+  blogKey
 })
 
 export const blogGetByKeyComplete = blog => ({
@@ -17,27 +26,26 @@ export const blogChange = (property, value) => ({
   value
 })
 
-export const blogRemoveByKey = key => {
+export const blogRemoveByKey = (blogKey, redirect) => {
   return {
     type: BLOG.REMOVE_BY_KEY,
-    key
+    blogKey,
+    redirect
   }
 }
 
-export const blogSaveByKey = (key, blog, isNew) => {
+export const blogSaveByKey = (blogKey, blog, isNew) => {
   return {
     type: BLOG.SAVE_BY_KEY,
-    key,
+    blogKey,
     blog,
     isNew
   }
 }
 
-export const blogSaveByKeyComplete = () => {
-  return {
-    type: BLOG.SAVE_BY_KEY_COMPLETE
-  }
-}
+export const blogSaveByKeyComplete = () => ({
+  type: BLOG.SAVE_BY_KEY_COMPLETE
+})
 
 export const redirect = url => {
   history.push(url)

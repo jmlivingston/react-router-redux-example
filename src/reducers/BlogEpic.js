@@ -12,6 +12,31 @@ import { getBlogItems, setBlogItems } from './dummyData'
 import history from '../config/history'
 
 const blogEpic = action$ => Observable.merge(
+  action$.ofType(BLOG.GET).switchMap(action =>
+    Observable.fromPromise(new Promise((resolve, reject) => {
+      resolve(getBlogItems())
+    })).switchMap(items => {
+      return Observable.of({
+        type: BLOG.GET_COMPLETE,
+        items
+      })
+    })
+  ),
+  action$.ofType(BLOG.GET_BY_KEY).switchMap(action =>
+    Observable.fromPromise(new Promise((resolve, reject) => {
+      resolve(getBlogItems()[action.blogKey])
+    })).switchMap(blog => {
+      if (!blog) {
+        history.push('/page-not-found')
+        return Observable.empty()
+      } else {
+        return Observable.of({
+          type: BLOG.GET_BY_KEY_COMPLETE,
+          blog
+        })
+      }
+    })
+  ),
   action$.ofType(BLOG.SAVE_BY_KEY).switchMap(action =>
     Observable.fromPromise(new Promise((resolve, reject) => {
       const newStorageItems = {
@@ -20,30 +45,37 @@ const blogEpic = action$ => Observable.merge(
       }
       setBlogItems(newStorageItems)
       resolve()
-    })).mapTo(() => {
+    })).switchMap(() => {
       if (action.isNew) {
         history.push('/blog/' + action.key)
+        return Observable.empty()
+      } else {
+        return Observable.of({
+          type: BLOG.SAVE_BY_KEY_COMPLETE
+        })
       }
-      return Observable.of({
-        ...action,
-        type: BLOG.SAVE_BY_KEY_COMPLETE
-      })
     })
   ),
   action$.ofType(BLOG.REMOVE_BY_KEY).switchMap(action =>
     Observable.fromPromise(new Promise((resolve, reject) => {
       const {
-        [action.key]: filteredValue,
+        [action.blogKey]: filteredValue,
         ...filteredItems
       } = getBlogItems()
       setBlogItems(filteredItems)
       resolve()
-    })).mapTo(() => {
-      history.push('/blog/')
-      return Observable.of({
-        ...action,
-        type: BLOG.REMOVE_BY_KEY_COMPLETE
-      })
+    })).switchMap(() => {
+      if (action.redirect) {
+        history.push('/blog/')
+        return Observable.of({
+          ...action,
+          type: BLOG.REMOVE_BY_KEY_COMPLETE
+        })
+      } else {
+        return Observable.of({
+          type: BLOG.GET
+        })
+      }
     })
   )
 )

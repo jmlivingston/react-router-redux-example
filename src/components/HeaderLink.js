@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom'
 const linkStyle = {
   style: {
     textDecoration: 'none',
-    padding: '10px',
+    padding: '15px',
     backgroundColor: '#ccc',
+    display: 'inline-block',
     color: '#000'
   },
   activeStyle: {
@@ -16,10 +17,9 @@ const linkStyle = {
   }
 }
 
-const HeaderLink = ({ exact = false, innerText, to }) => (
+const HeaderLink = ({ exact = false, innerText, to }) =>
   <NavLink exact={exact} to={to} {...linkStyle}>
     {innerText}
   </NavLink>
-)
 
 export default HeaderLink

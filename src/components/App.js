@@ -6,10 +6,19 @@ import React from 'react'
 
 import history from '../config/history'
 
+const contentStyle = {
+  style: {
+    paddingLeft: '15px',
+    paddingRight: '15px'
+  }
+}
+
 const App = () => <ConnectedRouter history={history}>
   <div>
     <Header />
-    <Router />
+    <div {...contentStyle}>
+      <Router />
+    </div>
   </div>
 </ConnectedRouter>
 

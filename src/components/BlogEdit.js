@@ -6,9 +6,12 @@ const BlogEdit = ({ blog, change, save, updated }) => {
     save(blog)
   }
   return <form onSubmit={submit}>
-    <input name='title' value={blog.title} onChange={e => { change(e.target.name, e.target.value) }} />
-    <input type='submit' value='Save' />
-    {updated && <div className='success'>Updated</div>}
+    <br />
+    <input type='textbox' name='title' value={blog.title} onChange={e => { change(e.target.name, e.target.value) }} />
+    <button type='submit'>Save</button>
+    <br />
+    {updated && <div className='success'>Updated!</div>}
+    <br />
   </form>
 }
 

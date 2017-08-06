@@ -3,7 +3,13 @@
 }
 
 body {
-    padding: 10px
+  margin: 0;
+}
+
+a {
+  color: #0275d8;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .a-inline {
@@ -12,5 +18,18 @@ body {
 }
 
 .success {
-  color: green
+  color: green;
+}
+
+input[type='textbox'] {
+  font-size: 14px;
+  padding: 8px;
+}
+
+button {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 3px;
+  border-style: solid;
+  cursor: pointer;
 }

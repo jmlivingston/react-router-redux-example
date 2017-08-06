@@ -6,16 +6,16 @@ export const blogGet = () => {
   })
 }
 
-export const blogGetByKey = key => {
+export const blogGetByKey = blogKey => {
   return new Promise((resolve, reject) => {
-    resolve(getBlogItems()[key])
+    resolve(getBlogItems()[blogKey])
   })
 }
 
-export const blogRemoveByKey = key => {
+export const blogRemoveByKey = blogKey => {
   return new Promise((resolve, reject) => {
     const {
-      [key]: filteredValue,
+      [blogKey]: filteredValue,
       ...filteredItems
     } = getBlogItems()
     setBlogItems(filteredItems)
@@ -23,11 +23,11 @@ export const blogRemoveByKey = key => {
   })
 }
 
-export const blogSaveByKey = (key, blog) => {
+export const blogSaveByKey = (blogKey, blog) => {
   return new Promise((resolve, reject) => {
     const newStorageItems = {
       ...getBlogItems(),
-      [key]: blog
+      [blogKey]: blog
     }
     setBlogItems(newStorageItems)
     resolve()
